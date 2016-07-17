@@ -1,0 +1,36 @@
+{
+  "name": "student-service",
+  "version": "0.0.1",
+  "description": "Student microservice",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "student-service"
+  ],
+  "author": "Analyn Flores",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.13.1",
+    "mongoose": "^4.5.3",
+    "morgan": "^1.7.0",
+    "password-hash": "^1.2.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chakram": "^1.4.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-mocha": "^2.2.0",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "mocha": "^2.5.3",
+    "run-sequence": "^1.2.2",
+    "should": "^9.0.2",
+    "sinon": "^1.17.4"
+  }
+}
