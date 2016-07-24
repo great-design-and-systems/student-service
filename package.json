@@ -4,7 +4,9 @@
   "description": "Student microservice",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "gulp jshint test watch",
+    "start": "gulp start",
+    "gulp": "node_modules/.bin/gulp"
   },
   "keywords": [
     "student-service"
