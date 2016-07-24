@@ -1,29 +1,31 @@
 'use strict';
 var mongoose = require('mongoose');
 
-var contactPersonSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    phoneNo: String
-});
 var studentProfileSchema = new mongoose.Schema({
     studentId: {
         type: String,
         required: [true, 'Student Id is required.']
     },
-    name: {
-        first: String,
-        middle: String,
-        last: String
+    firstName: {
+        type: String,
+        required: [true, 'firstname is required.']
     },
-    dateOfBirth: Date,
+    middleName: String,
+    lastName: {
+        type: String,
+        required: [true, 'lastname is required.']
+    },
+    birthDate: Date,
     gender: String,
     address: String,
-    barcode: String,
     contactNo: String,
-    contactPerson: [contactPersonSchema],
+    emailAddress: String,
     department: String,
     level: String,
+    contactName: String,
+    contactAddress: String,
+    contactEmail: String,
+    contactPersonNo: String,
     createdOn: { type: Date, default: Date.now }
 });
 

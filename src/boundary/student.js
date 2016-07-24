@@ -5,8 +5,8 @@ var GetStudentProfileByStudentId = require('../control/get-student-profile-by-st
 var DeleteStudentProfileByStudentId = require('../control/delete-student-profile-by-student-id');
 
 module.exports = {
-    getProfileByStudentId: function (studentId, callback) {
-        new GetStudentProfileByStudentId(studentId, function (err, result) {
+    getProfileByStudentId: function(studentId, callback) {
+        new GetStudentProfileByStudentId(studentId, function(err, result) {
             if (err) {
                 callback(err);
             } else {
@@ -14,37 +14,34 @@ module.exports = {
             }
         });
     },
-    create: function (param, callback) {
+    create: function(param, callback) {
         new CreateStudentProfile({
             studentId: param.studentId,
-            name: {
-                first: param.firstName,
-                middle: param.middleName,
-                last: param.lastName
-            },
-            dateOfBirth: param.dateOfBirth,
+            firstName: param.firstName,
+            middleName: param.middleName,
+            lastName: param.lastName,
+            birthDate: param.birthDate,
             gender: param.gender,
             address: param.address,
-            barcode: param.barcode,
             contactNo: param.contactNo,
-            contactPerson: {
-                name: param.contactName,
-                email: param.contactEmail,
-                phoneNo: param.contactPersonNo
-            },
+            emailAddress: param.emailAddress,
             department: param.department,
-            level: param.level
+            level: param.level,
+            contactName: param.contactName,
+            contactAddress: param.contactAddress,
+            contactEmail: param.contactEmail,
+            contactPersonNo: param.contactPersonNo
         }, callback);
     },
-    update: function (param, callback) {
+    update: function(param, callback) {
         new UpdateStudentProfile(param.studentId, param, callback);
     },
-    removeStudent: function (studentId, callback) {
-        new DeleteStudentProfileByStudentId(studentId, function (err) {
+    removeStudent: function(studentId, callback) {
+        new DeleteStudentProfileByStudentId(studentId, function(err) {
             if (!err) {
                 callback(undefined, {
-                    message: 'Student has been removed.'
-                });
+                            message: 'Student has been removed.'
+                        });
             } else {
                 callback(err);
             }
