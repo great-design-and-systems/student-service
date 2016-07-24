@@ -1,3 +1,4 @@
+'use strict';
 var Student = require('./student');
 var NotFoundException = require('../control/not-found-exception');
 var getCreateResponse = require('../control/get-create-response');

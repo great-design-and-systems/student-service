@@ -1,3 +1,4 @@
+'use strict';
 var API = process.env.API_NAME || '/api/student/';
 
 function execute(req, res, err, result) {

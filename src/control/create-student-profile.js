@@ -1,3 +1,4 @@
+'use strict';
 var StudentProfile = require('../entity/student-profile');
 
 function execute(studentProfile, callback) {
