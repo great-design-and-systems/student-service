@@ -5,7 +5,7 @@
         var PORT = process.env.DB_PORT || 27017;
         var HOST = process.env.DB_HOST || 'localhost';
         var DB = process.env.DB || 'student';
-        var USER = process.env.DN_USER;
+        var USER = process.env.DB_USER;
         var PASSWORD = process.env.DB_PASSWORD;
         var RETRY_COUNT = process.env.RETRY_COUNT || 10;
 
@@ -32,6 +32,7 @@
             var url = 'mongodb://';
             if (USER && PASSWORD) {
                 url += USER;
+                url += ':';
                 url += PASSWORD;
                 url += '@';
             }
