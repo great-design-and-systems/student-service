@@ -5,6 +5,18 @@ var getCreateResponse = require('../control/get-create-response');
 var API = process.env.API_NAME || '/api/student/';
 
 module.exports = function (app) {
+    app.get('/', function(req, res) {
+        res.status(200).send({
+            domain: process.env.DOMAIN_NAME || 'Student',
+            links: {
+                getProfileByStudentId: 'http://' + req.headers.host + API + 'student-profile/{studentId}/',
+                create: 'http://' + req.headers.host + API + 'create/',
+                update: 'http://' + req.headers.host + API + 'update/',
+                delete: 'http://' + req.headers.host + API + '{studentId}/'
+            }
+        });
+    });
+    
     app.get(API + 'student-profile/:studentId', function (req, res) {
         Student.getProfileByStudentId(req.params.studentId, function (err, result) {
             if (err) {
