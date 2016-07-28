@@ -10,7 +10,12 @@ module.exports = {
             if (err) {
                 callback(err);
             } else {
-                callback(undefined, result);
+                if (result) {
+                    callback(null, result);
+                } else {
+                    callback(true, null);
+                }
+                
             }
         });
     },
