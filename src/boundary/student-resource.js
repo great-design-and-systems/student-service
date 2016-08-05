@@ -5,18 +5,30 @@ var getCreateResponse = require('../control/get-create-response');
 var API = process.env.API_NAME || '/api/student/';
 
 module.exports = function (app) {
-    app.get('/', function(req, res) {
+    app.get('/', function (req, res) {
         res.status(200).send({
             domain: process.env.DOMAIN_NAME || 'Student',
             links: {
-                getProfileByStudentId: 'http://' + req.headers.host + API + 'student-profile/{studentId}/',
-                create: 'http://' + req.headers.host + API + 'create/',
-                update: 'http://' + req.headers.host + API + 'update/',
-                delete: 'http://' + req.headers.host + API + '{studentId}/'
+                getProfileByStudentId: {
+                    method: 'GET',
+                    url: 'http://' + req.headers.host + API + 'student-profile/:studentId'
+                },
+                createStudent: {
+                    method: 'POST',
+                    url: 'http://' + req.headers.host + API + 'create'
+                },
+                updateStudent: {
+                    method: 'PUT',
+                    url: 'http://' + req.headers.host + API + 'update'
+                },
+                deleteStudent: {
+                    method: 'DELETE',
+                    url: 'http://' + req.headers.host + API + ':studentId'
+                }
             }
         });
     });
-    
+
     app.get(API + 'student-profile/:studentId', function (req, res) {
         Student.getProfileByStudentId(req.params.studentId, function (err, result) {
             if (err) {
@@ -26,13 +38,11 @@ module.exports = function (app) {
             }
         });
     });
-
     app.post(API + 'create', function (req, res) {
         Student.create(req.body, function (err, result) {
             new getCreateResponse(req, res, err, result);
         });
     });
-
     app.put(API + 'update', function (req, res) {
         Student.update(req.body, function (err, numberAffected, response) {
             if (err) {
@@ -43,8 +53,6 @@ module.exports = function (app) {
             }
         });
     });
-
-
     app.delete(API + ':studentId', function (req, res) {
         Student.removeStudent(req.params.studentId, function (err, result) {
             if (err) {
