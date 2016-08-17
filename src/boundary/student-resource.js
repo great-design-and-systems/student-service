@@ -24,6 +24,10 @@ module.exports = function (app) {
                 deleteStudent: {
                     method: 'DELETE',
                     url: 'http://' + req.headers.host + API + ':studentId'
+                },
+                getStudents: {
+                    method: 'GET',
+                    url: 'http://' + req.headers.host + API + 'get-students'
                 }
             }
         });
@@ -59,6 +63,15 @@ module.exports = function (app) {
                 res.status(500).send({
                     message: 'Failed to remove student id ' + req.params.studentId + '.'
                 });
+            } else {
+                res.status(200).send(result);
+            }
+        });
+    });
+    app.get(API + 'get-students', function (req, res) {
+        Student.getStudents(req.query, function (err, result) {
+            if (err) {
+                res.status(500).send(err);
             } else {
                 res.status(200).send(result);
             }

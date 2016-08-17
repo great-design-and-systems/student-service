@@ -3,6 +3,7 @@ var CreateStudentProfile = require('../control/create-student-profile');
 var UpdateStudentProfile = require('../control/update-student-profile');
 var GetStudentProfileByStudentId = require('../control/get-student-profile-by-student-id');
 var DeleteStudentProfileByStudentId = require('../control/delete-student-profile-by-student-id');
+var GetStudents = require('../control/get-students');
 
 module.exports = {
     getProfileByStudentId: function(studentId, callback) {
@@ -48,6 +49,16 @@ module.exports = {
                         });
             } else {
                 callback(err);
+            }
+        });
+    },
+    getStudents: function (queryParam, callback) {
+    	console.log(queryParam);
+        new GetStudents(queryParam, function (err, result) {
+            if (err) {
+                callback({ message: 'Failed to get student records.' });
+            } else {
+                callback(undefined, result);
             }
         });
     }

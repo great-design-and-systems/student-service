@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var studentProfileSchema = new mongoose.Schema({
     studentId: {
@@ -22,5 +23,7 @@ var studentProfileSchema = new mongoose.Schema({
     level: String,
     createdOn: { type: Date, default: Date.now }
 });
+
+studentProfileSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('StudentProfile', studentProfileSchema);
