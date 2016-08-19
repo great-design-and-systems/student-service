@@ -32,8 +32,8 @@ module.exports = {
             level: param.level
         }, callback);
     },
-    update: function(param, callback) {
-        new UpdateStudentProfile(param.studentId, param, callback);
+    update: function(studentId, param, callback) {
+        new UpdateStudentProfile(studentId, param, callback);
     },
     removeStudent: function(studentId, callback) {
         new DeleteStudentProfileByStudentId(studentId, function(err) {

@@ -5,7 +5,8 @@ var mongoosePaginate = require('mongoose-paginate');
 var studentProfileSchema = new mongoose.Schema({
     studentId: {
         type: String,
-        required: [true, 'Student Id is required.']
+        required: [true, 'Student Id is required.'],
+        unique: true
     },
     firstName: {
         type: String,
