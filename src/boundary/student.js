@@ -25,17 +25,11 @@ module.exports = {
             firstName: param.firstName,
             middleName: param.middleName,
             lastName: param.lastName,
-            birthDate: param.birthDate,
             gender: param.gender,
-            address: param.address,
             contactNo: param.contactNo,
             emailAddress: param.emailAddress,
             department: param.department,
-            level: param.level,
-            contactName: param.contactName,
-            contactAddress: param.contactAddress,
-            contactEmail: param.contactEmail,
-            contactPersonNo: param.contactPersonNo
+            level: param.level
         }, callback);
     },
     update: function(param, callback) {

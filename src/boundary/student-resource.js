@@ -23,7 +23,7 @@ module.exports = function (app) {
                 },
                 deleteStudent: {
                     method: 'DELETE',
-                    url: 'http://' + req.headers.host + API + ':studentId'
+                    url: 'http://' + req.headers.host + API + 'delete/:studentId'
                 },
                 getStudents: {
                     method: 'GET',
@@ -57,7 +57,7 @@ module.exports = function (app) {
             }
         });
     });
-    app.delete(API + ':studentId', function (req, res) {
+    app.delete(API + 'delete/:studentId', function (req, res) {
         Student.removeStudent(req.params.studentId, function (err, result) {
             if (err) {
                 res.status(500).send({
