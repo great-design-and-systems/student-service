@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var studentProfileSchema = new mongoose.Schema({
     studentId: {
@@ -26,5 +27,6 @@ var studentProfileSchema = new mongoose.Schema({
 });
 
 studentProfileSchema.plugin(mongoosePaginate);
+studentProfileSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('StudentProfile', studentProfileSchema);

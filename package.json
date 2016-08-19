@@ -4,13 +4,13 @@
   "description": "Student microservice",
   "main": "index.js",
   "scripts": {
-        "test": "gulp jshint test watch",
-        "start": "gulp start",
-        "update": "gulp pull",
-        "gulp": "node_modules/.bin/gulp",
-        "stop": "gulp server-stop",
-        "restart": "gulp server-restart",
-        "container": "gulp pull && gulp start"
+    "test": "gulp jshint test watch",
+    "start": "gulp start",
+    "update": "gulp pull",
+    "gulp": "node_modules/.bin/gulp",
+    "stop": "gulp server-stop",
+    "restart": "gulp server-restart",
+    "container": "gulp pull && gulp start"
   },
   "keywords": [
     "student-service"
@@ -36,6 +36,7 @@
     "mocha": "^2.5.3",
     "mongoose": "^4.5.3",
     "mongoose-paginate": "^5.0.0",
+    "mongoose-unique-validator": "^1.0.2",
     "morgan": "^1.7.0",
     "run-sequence": "^1.2.2",
     "should": "^9.0.2",
