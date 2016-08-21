@@ -1,6 +1,6 @@
 'use strict';
 var StudentProfile = require('../entity/student-profile');
-var GetLogger = require('./get-get-logger');
+var GetLogger = require('./get-logger');
 
 function execute(studentId, callback) {
     var logger;
