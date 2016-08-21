@@ -2,7 +2,7 @@
 var StudentProfile = require('../entity/student-profile');
 
 function execute(studentId, callback) {
-    StudentProfile.remove({
+    StudentProfile.findOneAndRemove({
         studentId: studentId
     }, callback);
 }
