@@ -7,7 +7,7 @@ function execute(studentId, callback) {
     new GetLogger(function(err, logger) {
         logger = logger;
     });
-    StudentProfile.remove({
+    StudentProfile.findOneAndRemove({
         studentId: studentId
     }, function(err, result) {
         if (err) {
