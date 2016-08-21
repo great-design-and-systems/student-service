@@ -4,8 +4,8 @@ var GetLogger = require('./get-logger');
 
 function execute(studentId, callback) {
     var logger;
-    new GetLogger(function(err, logger) {
-        logger = logger;
+    new GetLogger(function(err, log) {
+        logger = log;
     });
     StudentProfile.findOneAndRemove({
         studentId: studentId
