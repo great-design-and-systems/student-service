@@ -1,20 +1,16 @@
 'use strict';
 var StudentProfile = require('../entity/student-profile');
-var GetLogger = require('./get-logger');
+var logger = require('./get-logger');
 
 function execute(studentId, callback) {
-    var logger;
-    new GetLogger(function(err, log) {
-        logger = log;
-    });
     StudentProfile.findByIdAndRemove(studentId, function(err, result) {
         if (err) {
-            logger.error(err);
+            logger.error('delete-student-profile-by-student-id', err);
             callback({
                 message: 'Failed removing student ID' + studentId
             });
         } else {
-            callback(undefined, result);
+            callback(null, result);
         }
     });
 }
