@@ -4,7 +4,7 @@ var StudentProfile = require('../entity/student-profile');
 var logger = require('./get-logger');
 
 function execute(condition, update, callback) {
-    StudentProfile.update(condition, update, { multi: true }, function(err, result) {
+    StudentProfile.findByIdAndUpdate(condition, update, function(err, result) {
         if (err) {
             logger.error('update-student-profile', err);
             callback({
