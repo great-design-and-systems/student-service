@@ -23,7 +23,8 @@ var studentProfileSchema = new mongoose.Schema({
     emailAddress: String,
     department: String,
     level: String,
-    createdOn: { type: Date, default: Date.now }
+    createdOn: { type: Date, default: Date.now },
+    imageId: String
 });
 
 studentProfileSchema.plugin(mongoosePaginate);
