@@ -48,7 +48,7 @@ module.exports = function(app) {
         });
     });
     app.put(API + 'update/:studentId', function(req, res) {
-        Student.update(req.params.studentId, req.body, function(err, numberAffected, response) {
+        Student.update(req.params, req.body, function(err, numberAffected, response) {
             if (err) {
                 res.status(500).send(response);
             } else {
