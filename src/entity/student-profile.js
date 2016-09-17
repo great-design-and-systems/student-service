@@ -7,7 +7,7 @@ var studentProfileSchema = new mongoose.Schema({
     studentId: {
         type: String,
         required: [true, 'Student Id is required.'],
-        unique: true
+        unique: [true, 'Student ID already exists']
     },
     firstName: {
         type: String,
@@ -23,7 +23,7 @@ var studentProfileSchema = new mongoose.Schema({
     emailAddress: String,
     department: String,
     level: String,
-    createdOn: { type: Date, default: Date.now },
+    createdOn: {type: Date, default: Date.now},
     imageId: String
 });
 

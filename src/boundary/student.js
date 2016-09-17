@@ -4,10 +4,10 @@ var UpdateStudentProfile = require('../control/update-student-profile');
 var GetStudentProfileByStudentId = require('../control/get-student-profile-by-student-id');
 var DeleteStudentProfileByStudentId = require('../control/delete-student-profile-by-student-id');
 var GetStudents = require('../control/get-students');
-
+var ValidateStudentId = require('../control/validate-student-id');
 module.exports = {
-    getProfileByStudentId: function(studentId, callback) {
-        new GetStudentProfileByStudentId(studentId, function(err, result) {
+    getProfileByStudentId: function (studentId, callback) {
+        new GetStudentProfileByStudentId(studentId, function (err, result) {
             if (err) {
                 callback(err);
             } else {
@@ -19,7 +19,7 @@ module.exports = {
             }
         });
     },
-    create: function(param, callback) {
+    create: function (param, callback) {
         new CreateStudentProfile({
             studentId: param.studentId,
             firstName: param.firstName,
@@ -32,28 +32,31 @@ module.exports = {
             level: param.level
         }, callback);
     },
-    update: function(studentId, param, callback) {
+    update: function (studentId, param, callback) {
         new UpdateStudentProfile(studentId, param, callback);
     },
-    removeStudent: function(studentId, callback) {
-        new DeleteStudentProfileByStudentId(studentId, function(err) {
+    removeStudent: function (studentId, callback) {
+        new DeleteStudentProfileByStudentId(studentId, function (err) {
             if (!err) {
                 callback(undefined, {
-                            message: 'Student has been removed.'
-                        });
+                    message: 'Student has been removed.'
+                });
             } else {
                 callback(err);
             }
         });
     },
     getStudents: function (queryParam, callback) {
-    	console.log(queryParam);
+        console.log(queryParam);
         new GetStudents(queryParam, function (err, result) {
             if (err) {
-                callback({ message: 'Failed to get student records.' });
+                callback({message: 'Failed to get student records.'});
             } else {
                 callback(undefined, result);
             }
         });
+    },
+    validateStudentId: function (studentId, callback) {
+        new ValidateStudentId(studentId, callback);
     }
 };

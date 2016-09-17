@@ -3,14 +3,14 @@ var Database = require('./config/database');
 var sinon = require('sinon');
 var chai = require('chai');
 var expect = chai.expect;
-describe('Student Service BDD', function() {
+describe('Student Service BDD', function () {
     var db = new Database();
 
-    beforeEach(function(done) {
+    beforeEach(function (done) {
         return db.connect(done);
     });
 
-    describe('GIVEN: I have student data', function() {
+    describe('GIVEN: I have student data', function () {
         var studentId = '123456';
         var firstName = 'Analyn';
         var middleName = 'Rosales';
@@ -22,7 +22,7 @@ describe('Student Service BDD', function() {
         var level = '1st year';
         var data = {};
 
-        beforeEach(function() {
+        beforeEach(function () {
             data.studentId = studentId;
             data.firstName = firstName;
             data.middleName = middleName;
@@ -33,57 +33,82 @@ describe('Student Service BDD', function() {
             data.department = department;
             data.level = level;
         });
+        describe('WHEN: validating non existing studentId', function () {
+            var result = false;
+            beforeEach(function (done) {
+                Student.validateStudentId(data.studentId, function (err, valid) {
+                    result = valid;
+                    done();
+                })
+            });
 
-        describe('WHEN: saving student', function() {
+            it('THEN: student id is valid', function () {
+                expect(result).to.be.true;
+            });
+        });
+        describe('WHEN: saving student', function () {
             var savedResult;
-            beforeEach(function(done) {
-                Student.create(data, function(err, result) {
+            beforeEach(function (done) {
+                Student.create(data, function (err, result) {
                     savedResult = result;
                     done();
                 });
             });
 
-            it('THEN: response is student profile', function() {
+            it('THEN: response is student profile', function () {
                 expect(!!savedResult).to.equal(true);
             });
-            describe('WHEN: updating student profile', function() {
+            describe('WHEN: validating existing studentId', function () {
+                var result = false;
+                beforeEach(function (done) {
+                    Student.validateStudentId(data.studentId, function (err, valid) {
+                        result = valid;
+                        done();
+                    })
+                });
+
+                it('THEN: student id is invalid', function () {
+                    expect(result).to.be.undefined;
+                });
+            });
+            describe('WHEN: updating student profile', function () {
 
                 var expectedResult;
-                beforeEach(function(done) {
+                beforeEach(function (done) {
                     data.contactNo = '1234567890';
-                    Student.update(data, function(err, result) {
+                    Student.update(data, function (err, result) {
                         expectedResult = result;
                         done();
                     });
                 });
 
-                it('THEN: student profile is updated', function() {
+                it('THEN: student profile is updated', function () {
                     expect(expectedResult.nModified).to.be.above(0);
                 });
             });
-            describe('GIVEN: I have studentId', function() {
+            describe('GIVEN: I have studentId', function () {
                 var studentProfile;
-                describe('WHEN: getting studentProfile', function() {
-                    beforeEach(function(done) {
-                        Student.getProfileByStudentId(studentId, function(err, result) {
+                describe('WHEN: getting studentProfile', function () {
+                    beforeEach(function (done) {
+                        Student.getProfileByStudentId(studentId, function (err, result) {
                             studentProfile = result;
                             done();
                         });
                     });
-                    it('THEN: student profile is retrieved', function() {
+                    it('THEN: student profile is retrieved', function () {
                         expect(!!studentProfile).to.equal(true);
                     });
                 });
-                describe('WHEN: removing student', function() {
+                describe('WHEN: removing student', function () {
                     var message;
-                    beforeEach(function(done) {
-                        Student.removeStudent(studentProfile._id, function(err, result) {
+                    beforeEach(function (done) {
+                        Student.removeStudent(studentProfile._id, function (err, result) {
                             message = result.message;
                             done();
                         });
                     });
 
-                    it('THEN: student profile is removed', function() {
+                    it('THEN: student profile is removed', function () {
                         expect(!!message).to.equal(true);
                         expect(message).to.equal('Student has been removed.');
                     });
@@ -93,7 +118,7 @@ describe('Student Service BDD', function() {
 
     });
 
-    afterEach(function(done) {
+    afterEach(function (done) {
         return db.disconnect(done);
     });
 });
