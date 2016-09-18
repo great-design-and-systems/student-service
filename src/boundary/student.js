@@ -29,7 +29,8 @@ module.exports = {
             contactNo: param.contactNo,
             emailAddress: param.emailAddress,
             department: param.department,
-            level: param.level
+            level: param.level,
+            imageId: param.imageId
         }, callback);
     },
     update: function (studentId, param, callback) {
