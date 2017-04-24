@@ -19,7 +19,7 @@ module.exports = function (app) {
                 },
                 updateStudent: {
                     method: 'PUT',
-                    url: 'http://' + req.headers.host + API + 'update/:studentId'
+                    url: 'http://' + req.headers.host + API + 'update/:id'
                 },
                 deleteStudent: {
                     method: 'DELETE',
@@ -51,8 +51,8 @@ module.exports = function (app) {
             new getCreateResponse(req, res, err, result);
         });
     });
-    app.put(API + 'update/:studentId', function (req, res) {
-        Student.update(req.params, req.body, function (err, numberAffected, response) {
+    app.put(API + 'update/:id', function (req, res) {
+        Student.update(req.params.id, req.body, function (err, numberAffected, response) {
             if (err) {
                 res.status(500).send(response);
             } else {
