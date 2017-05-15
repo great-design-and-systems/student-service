@@ -57,7 +57,7 @@ gulp.task('server-watch', function () {
 });
 
 gulp.task('start', function () {
-    runSequence('jshint', 'test', 'server-start');
+    runSequence(/*'jshint', 'test', */'server-start');
 });
 
 //Run git pull from multiple branches 
