@@ -76,7 +76,7 @@ describe('Student Service BDD', function () {
                 var expectedResult;
                 beforeEach(function (done) {
                     data.contactNo = '1234567890';
-                    Student.update(data, function (err, result) {
+                    Student.update(savedResult._id, data, function (err, result) {
                         expectedResult = result;
                         done();
                     });
